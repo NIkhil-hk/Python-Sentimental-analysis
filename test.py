@@ -1,6 +1,9 @@
 import requests
 
-url = "https://python-sentimental-analysis.onrender.com/analyze"
-data = {"text": "This is an bad project!"}
+url = "https://python-sentimental-analysis.onrender.com/analyze"  # Replace with your actual Render URL
+data = {"text": "I is awesome!"}
+
 response = requests.post(url, json=data)
-print(response.json())
+
+print("Status Code:", response.status_code)  # Print HTTP status
+print("Response Text:", response.text)  # Print raw response

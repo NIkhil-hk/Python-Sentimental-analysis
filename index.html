@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+</head>
+<body>
+    <h2>Enter Text for Sentiment Analysis</h2>
+    <input type="text" id="userText" placeholder="Type something...">
+    <button onclick="analyzeSentiment()">Analyze</button>
+
+    <h3>Result:</h3>
+    <p id="result"></p>
+
+    <script>
+        function analyzeSentiment() {
+            const text = document.getElementById("userText").value;
+
+            fetch("https://python-sentimental-analysis.onrender.com/analyze", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ text: text })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("result").innerText = 
+                    `Sentiment: ${data.sentiment} (Score: ${data.sentiment_score})`;
+            })
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
+</body>
+</html>
